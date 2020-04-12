@@ -54,3 +54,24 @@ let books = document.querySelectorAll('#book-list li .name'); // все элем
 books.forEach(book => console.log(book));
 
 console.log('books.length', books.length);
+
+
+// _______________________________________________
+
+// Changing Text & HTML Content
+
+books.forEach(book => console.log(book.textContent)); 
+// textContent позволяет работать с текстовым содержимим dom элементов
+
+books.forEach(book => book.textContent += ' <bold>test</bold>'); // изменяем содержимое
+
+
+let bookList = document.querySelector('#book-list');
+
+// bookList.innerHTML = '<h2>We changed all inner html!</h2>'; 
+bookList.innerHTML += '<p>This is how you add HTML</p>'; 
+
+// Существуют также и другие методы для изменения html содержимого
+// например append, appendChild
+
+// _______________________________________________
