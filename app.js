@@ -10,6 +10,7 @@ let titles = document.getElementsByClassName('title'); // выберет ВСЕ 
 // по аналогии с массивами
 //
 // т.е. элементы в HTMLCollection можно перебрать через цикл
+// элементами HTMLCollection являются ТОЛЬКО html-ноды (теги)
 // _____________________________________________________________
 
 
@@ -75,3 +76,51 @@ bookList.innerHTML += '<p>This is how you add HTML</p>';
 // например append, appendChild
 
 // _______________________________________________
+
+// Nodes
+// В DOM дереве абсолютно все явлется узлами (нодами), даже переносы строк между html-тегами
+// ноды обладают большим количеством свойств и методов
+// всего есть 12 типов нод
+
+let banner = document.querySelector('#page-banner');
+
+console.log('#page-banner node type is: ', banner.nodeType); // Узнаем тип этой ноды
+// вернется число "1", nodeType возвращает числа (1 это html элемент)
+
+console.log('#page-banner node name is: ', banner.nodeName); // DIV
+
+console.log('#page-banner node has child nodes: ', banner.hasChildNodes()); // true
+
+let cloneBanner = banner.cloneNode(true); // ноду можно клонировать 
+// если передать true, то склонируется все, включая и дочерние элементы
+// если передать false, то склонируется только сама нода (без дочерних элементов)
+
+// _____________________________________________
+
+// Traversing the DOM
+// Обход DOM дерева
+
+console.log('parent node of bookList is: ', bookList.parentNode); // аналог parentElement
+// вернет родителя bookList, т.е. div с id="wrapper" со всем его содержимым
+// т.к. это тоже нода, то вызовы методов и свойств можно выстраивать цепочкой через точку
+console.log('parent element of bookList is: ', bookList.parentElement.parentElement);
+// таким образом можно обходить дерево нод в сторону родителей
+
+// для обхода в сторону детей и
+console.log(bookList.children); // children вернет HTMLCollection из потомков первого уровня
+// HTMLCollection(3) [h2.title, ul, p]
+
+// к соседним элементам тоже можно получить доступ
+console.log('bookList next sibling is: ', bookList.nextSibling); // вернет ноду переноса строки
+console.log('bookList next element sibling is: ', bookList.nextElementSibling);
+// вернет следующею соседню ноду - html-тег
+
+console.log('bookList previous sibling is: ', bookList.previousSibling); // вернет ноду переноса строки
+console.log('bookList previous element sibling is: ', bookList.previousElementSibling);
+// вернет предыдущую соседню ноду - html-тег
+
+// теперь изменим внутреннее содержимое соседней ноды
+
+bookList.previousElementSibling.querySelector('p').innerHTML += '<br/>Too cool for everyone else';
+
+// __________________________________________
