@@ -31,3 +31,26 @@ arrayOfLi.forEach((li, index) => {
         li.style.color = '#444'; // Поменяем color
     }
 });
+
+// __________________________________________________________________
+
+let wmf = document.querySelector('#wrapper li:nth-child(2) .name');
+// querySelector работает по CSS селекторам, и возвращает первый элемент (Element),
+// подходящий под селектор или null если ни чего не нашел
+
+console.log(wmf);
+
+// --------------------------------
+// если нужно сделать коллекцию элементов то можно использовать querySelectorAll
+// он возвращает статический (не динамический) NodeList у которого доступен метод forEach
+// еще раз - у NodeList  есть метод forEach, и еще несколько других методов и свойств
+
+let books = document.querySelectorAll('#book-list li .name'); // все элементы с классом .name
+// входящие в li 
+// который в свою очередь входит в элемент с id='#book-list'
+
+// console.log('books', books);
+
+books.forEach(book => console.log(book));
+
+console.log('books.length', books.length);
