@@ -186,3 +186,43 @@ list.addEventListener('click', e => {
 
 // ______________________________________________________________
 
+// Interacting with Forms
+
+let addForm = document.forms['add-book'];
+// свойство forms объекта document возвращает HTMLCollection состоящую из всех форм на странице
+// к каждой форме можно достучаться через индекс document.forms[0] или по id формы document.forms['add-book']
+
+addForm.addEventListener('submit', e => {
+    // останавливаем поведение по умолчанию
+    e.preventDefault();
+    let input = addForm.querySelector('input[type="text"]');
+    let value = addForm.querySelector('input[type="text"]').value;
+    // получаем значение из инпута. Так можно получить значение любого инпута
+    console.log('input new book ', value);
+
+
+    // Creating Elements
+
+    // создаем новый элемент списка
+    let li = document.createElement('li');
+    let bookName = document.createElement('span');
+    let deletBtn = document.createElement('span');
+
+    // добавляем текстовое содержимое
+    bookName.textContent = value;
+    deletBtn.textContent = 'Delete';
+
+    // добавляем стили
+    bookName.className = 'name'; // className возвращает строку состоящую из названий классов
+    deletBtn.classList.add('delete'); // classList возвращает список классов
+
+    // вставляем в документ
+    li.appendChild(bookName); // appendChild добавляет элемент в конец тега
+    li.appendChild(deletBtn);
+    list.appendChild(li);
+
+    // очищаем инпут
+    input.value = '';
+});
+
+// ______________________________________
