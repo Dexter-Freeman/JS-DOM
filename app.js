@@ -124,3 +124,42 @@ console.log('bookList previous element sibling is: ', bookList.previousElementSi
 bookList.previousElementSibling.querySelector('p').innerHTML += '<br/>Too cool for everyone else';
 
 // __________________________________________
+
+
+// Add event listener
+
+let h2 = document.querySelector('#book-list h2'); // выбрали элемент
+
+h2.addEventListener('click', (event) => {
+    // event это объект события
+    console.log(event.target); // target это элемент, на котором произошло событие
+    console.log('event', event);
+});
+
+// Навесим обработчик события на несколько элементов сразу
+
+let delBtns = document.querySelectorAll('#book-list .delete');
+// выберем все элементы span с классом  .delete и каждому из них добавим addEventListener
+
+delBtns.forEach(btn => {
+    btn.addEventListener('click', e => {
+        let parent = btn.parentElement;
+        console.log('Delete: ', parent.innerHTML);
+        parent.style.display = 'none'; // Таким образом мы просто скроем этот элемент
+        // чтобы удалить его сделаем так:
+        parent.parentElement.removeChild(parent); // выбираем родителя от родителя
+        // и полностью удаляем элемент из DOM дерева
+        // можно сделать и вот так:
+        // parent.parentNode.removeChild(parent);
+    });
+});
+
+// теперь отменим поведение события по умолчанию:
+
+let link = document.querySelector('.git-hub');
+link.addEventListener('click', e => {
+    e.preventDefault();
+    console.log('you just ckicked on the link ', e.target.textContent);
+});
+
+// ___________________________________________________________
