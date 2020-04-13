@@ -141,18 +141,23 @@ h2.addEventListener('click', (event) => {
 let delBtns = document.querySelectorAll('#book-list .delete');
 // выберем все элементы span с классом  .delete и каждому из них добавим addEventListener
 
-delBtns.forEach(btn => {
-    btn.addEventListener('click', e => {
-        let parent = btn.parentElement;
-        console.log('Delete: ', parent.innerHTML);
-        parent.style.display = 'none'; // Таким образом мы просто скроем этот элемент
-        // чтобы удалить его сделаем так:
-        parent.parentElement.removeChild(parent); // выбираем родителя от родителя
-        // и полностью удаляем элемент из DOM дерева
-        // можно сделать и вот так:
-        // parent.parentNode.removeChild(parent);
-    });
-});
+// delBtns.forEach(btn => {
+//     btn.addEventListener('click', e => {
+//         let parent = btn.parentElement;
+//         console.log('Delete: ', parent.innerHTML);
+//         parent.style.display = 'none'; // Таким образом мы просто скроем этот элемент
+//         // чтобы удалить его сделаем так:
+//         parent.parentElement.removeChild(parent); // выбираем родителя от родителя
+//         // и полностью удаляем элемент из DOM дерева
+//         // можно сделать и вот так:
+//         // parent.parentNode.removeChild(parent);
+//     });
+//     // -----------------------
+//     // Навешиваение событий таким образом не эффективно с точки зрени экономии ресурсов
+//     // и при добавлении новой книги в список не будет добавляться к новой кнопке
+//     // эффективней навесить обработчик события на родительский элемент
+//     // ------------------------
+// });
 
 // теперь отменим поведение события по умолчанию:
 
@@ -163,3 +168,21 @@ link.addEventListener('click', e => {
 });
 
 // ___________________________________________________________
+
+// Event Bubbling - Всплытие события
+
+let list = document.querySelector('#book-list ul');
+list.addEventListener('click', e => {
+    if ( e.target.className === 'delete' ) {
+        let li = e.target.parentElement;
+        // удалить этот элемент списка можно двумя способами
+        // li.parentElement.removeChild(li); // родитель элемента li это ul, в нашем случае list
+        list.removeChild(li);
+        console.log('delete book');
+    }
+    // при клике на кнопку delete, событие всплывает и обрабатывается на родителе
+    // т.е. мы навешиваем обработчик не на каждую кнопку, а делаем всего один обработчик
+});
+
+// ______________________________________________________________
+
