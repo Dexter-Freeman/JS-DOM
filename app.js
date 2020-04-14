@@ -198,6 +198,8 @@ addForm.addEventListener('submit', e => {
     let input = addForm.querySelector('input[type="text"]');
     let value = addForm.querySelector('input[type="text"]').value;
     // получаем значение из инпута. Так можно получить значение любого инпута
+    if ( !value ) return; // если ничего не ввели, то ничего не делать
+   
     console.log('input new book ', value);
 
 
@@ -226,3 +228,29 @@ addForm.addEventListener('submit', e => {
 });
 
 // ______________________________________
+
+// Atributes
+
+let firstBook = document.querySelector('li:first-child .name');
+
+// значение определенного атрибута можно получить через метод getAttribute('attribute-name')
+let styleAtr = firstBook.getAttribute('class');
+
+console.log('styleAtr', styleAtr);
+
+// для того чтобы изменить значение атрибута используем метод setAttribute('attribute-name', 'attribute-value')
+firstBook.setAttribute('id', 'newId');
+
+console.log(firstBook.getAttribute('id'));
+
+// для того чтобы проверить есть ли какой-либо атрибут у элемента hasAttribute('attribute-name')
+
+console.log('is firstBook has class atr', firstBook.hasAttribute('class'));
+console.log('is firstBook has id atr', firstBook.hasAttribute('id'));
+
+// для удаления атрибута removeAttribute('attribute-name')
+firstBook.removeAttribute('id');
+console.log('remove id');
+console.log('is firstBook has id atr', firstBook.hasAttribute('id'));
+
+// _______________________________________
