@@ -254,3 +254,19 @@ console.log('remove id');
 console.log('is firstBook has id atr', firstBook.hasAttribute('id'));
 
 // _______________________________________
+
+// Checkboxes & Change Events
+
+// hide books
+
+let hideBox = document.querySelector('#hide');
+// выбрали нужный нам чекбокс
+
+hideBox.addEventListener('change', e => {
+    
+    // hideBox.checked ? list.style.display = 'none' : list.style.display = 'initial';
+    // будет работать и так и так как ниже
+    list.style.display = hideBox.checked ? 'none' : 'initial';
+    console.log('hide all books');
+});
+
