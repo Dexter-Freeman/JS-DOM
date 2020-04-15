@@ -270,3 +270,30 @@ hideBox.addEventListener('change', e => {
     console.log('hide all books');
 });
 
+// _______________________________________________
+
+// Custom Search Filter
+
+// let searchInput = document.querySelector('#search-books input');
+let searchInput = document.forms['search-books'].querySelector('input');
+// выбрать элемент можно разными способами
+console.log('searchInput', searchInput);
+
+searchInput.addEventListener('keyup', e => {
+    const searchStr = e.target.value.toLowerCase();
+    // содержимое инпута приведем к нижнему регистру
+
+    let books = Array.from(list.getElementsByTagName('li'));
+    books.forEach(book => {
+        let title = book.firstElementChild.textContent.toLowerCase();
+        // приводим название книги к нижнему регистру
+        book.style.display = title.indexOf(searchStr) != -1 ? 'block' : 'none';
+        // если название не содержит строку поиска, то скрываем эту книгу
+        // либо вот так
+        // if ( title.indexOf(searchStr) != -1 ) {
+        //     book.style.display = 'block';
+        // } else book.style.display = 'none';
+    });
+});
+
+// ___________________________________________
