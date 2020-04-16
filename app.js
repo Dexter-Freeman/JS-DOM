@@ -297,3 +297,37 @@ searchInput.addEventListener('keyup', e => {
 });
 
 // ___________________________________________
+
+// Tabbed Content
+
+let tabs = document.querySelector('.tabs');
+let panels = document.querySelectorAll('.panel');
+// querySelectorAll возвращает NodeList а у него есть метод forEach
+
+tabs.addEventListener('click', e => {
+
+    if ( e.target.tagName != 'LI' ) return;
+    // если кликнули НЕ по li, то ничего не делаем
+    
+    const targetPanel = document.querySelector(e.target.dataset.target);
+    // выбираем ту панель у которой id совпадает со значением атрибута data-target
+    // у элемента li по которому кликнули
+    // далее пройдемся циклом по всем панелям. Если поанель совпадает с targetPanel то 
+    // добавим ей класс active. если нет, то удалим этот класс
+    panels.forEach(panel => {
+        if ( panel == targetPanel ) {
+            panel.classList.add('active');
+        } else panel.classList.remove('active');
+    });
+    
+    // также и у li-шек добавляем или удаляем класс active
+    // для этого выберем все элементы li в элементе tabs
+    let tabsList = tabs.querySelectorAll('li');
+    tabsList.forEach(tab => {
+        if ( tab == e.target ) {
+            tab.classList.add('active');   
+            } else tab.classList.remove('active');
+    });
+});
+
+// ___________________________________

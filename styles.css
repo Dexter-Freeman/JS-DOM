@@ -123,7 +123,7 @@ h1, h2{
     line-height: 52px;
 }
 
-/*
+
 #tabbed-content li{
     display: inline-block;
     padding: 10px 14px;
@@ -132,13 +132,17 @@ h1, h2{
     cursor: pointer;
     margin-right: 10px;
 }
-#tabbed-content .tab{
+
+#tabbed-content li.active {
+    background: rgba(83, 187, 249, 0.42);
+}
+
+#tabbed-content .panel{
     display: none;
     border: 1px solid #ddd;
     padding: 0 10px;
     border-radius: 4px;
 }
-#tabbed-content .tab.active{
+#tabbed-content .panel.active{
     display: block;
 }
-*/
