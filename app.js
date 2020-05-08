@@ -1,6 +1,6 @@
 // DOMContentLoaded
 
-document.addEventListener.('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
 // про событие DOMContentLoaded объяснение в самом низу
 
     let titles = document.getElementsByClassName('title'); // выберет ВСЕ элементы на странице
